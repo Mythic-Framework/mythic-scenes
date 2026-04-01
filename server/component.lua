@@ -21,6 +21,7 @@ function RetrieveComponents()
 	Vehicles = exports['mythic-base']:FetchComponent('Vehicles')
     Inventory = exports['mythic-base']:FetchComponent('Inventory')
     Scenes = exports['mythic-base']:FetchComponent('Scenes')
+    Version = exports['mythic-base']:FetchComponent('Version')
 end
 
 AddEventHandler('Core:Shared:Ready', function()
@@ -39,8 +40,9 @@ AddEventHandler('Core:Shared:Ready', function()
 		'Vehicles',
         'Inventory',
         'Scenes',
+        'Version',
 	}, function(error)
-		if #error > 0 then 
+		if #error > 0 then
             exports['mythic-base']:FetchComponent('Logger'):Critical('Scenes', 'Failed To Load All Dependencies')
 			return
 		end
@@ -159,6 +161,8 @@ AddEventHandler('Core:Shared:Ready', function()
         end, {
             help = 'Delete a Scene (Look at Scene You Want to Delete)',
         })
+
+        Version:Check('Mythic-Framework/Mythic-VersionCheckers', GetCurrentResourceName())
 	end)
 end)
 
